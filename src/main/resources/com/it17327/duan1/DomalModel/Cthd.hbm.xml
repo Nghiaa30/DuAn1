@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 19, 2022 2:17:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.it17327.duan1.DomalModel.Cthd" table="CTHD" schema="dbo" catalog="ProjectOne" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="Id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="hoaDon" class="com.it17327.duan1.DomalModel.HoaDon" fetch="select">
+            <column name="IdHD" length="10" />
+        </many-to-one>
+        <property name="soLuong" type="java.lang.Integer">
+            <column name="soLuong" />
+        </property>
+        <property name="donGia" type="big_decimal">
+            <column name="donGia" scale="4" />
+        </property>
+        <property name="donGiaKhiGiam" type="big_decimal">
+            <column name="donGiaKhiGiam" scale="4" />
+        </property>
+        <property name="thanhTien" type="big_decimal">
+            <column name="ThanhTien" scale="4" />
+        </property>
+        <set name="phieuBaoHanhs" table="PhieuBaoHanh" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdHDCT" length="10" />
+            </key>
+            <one-to-many class="com.it17327.duan1.DomalModel.PhieuBaoHanh" />
+        </set>
+        <set name="serials" table="serial" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdCTHD" length="10" />
+            </key>
+            <one-to-many class="com.it17327.duan1.DomalModel.Serial" />
+        </set>
+    </class>
+</hibernate-mapping>
